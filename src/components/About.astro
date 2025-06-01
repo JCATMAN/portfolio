@@ -1,6 +1,8 @@
 ---
 import SectionHeading from "./SectionHeading.astro";
 import profile from "../assets/profile.jpg";
+
+const resumeUrl = import.meta.env.PUBLIC_N8N_DOWNLOAD_CV_WEBHOOK;
 ---
 
 <section
@@ -120,7 +122,12 @@ import profile from "../assets/profile.jpg";
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="#contact" class="btn-primary">Let's Connect</a>
-          <a href="/resume.pdf" class="btn-outline" download>
+          <a
+            href={resumeUrl}
+            class="btn-outline"
+            download
+            data-tooltip="This function is managed using n8n as an automation I personally created"
+          >
             Download Resume
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -135,6 +142,11 @@ import profile from "../assets/profile.jpg";
             </svg>
           </a>
         </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
+          ⚙️ Powered by <a href="https://n8n.io" target="_blank" class="link"
+            >n8n</a
+          > – automation workflow built and self-hosted by me
+        </p>
       </div>
     </div>
   </div>

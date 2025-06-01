@@ -143,4 +143,31 @@
   .link {
     @apply text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200;
   }
+
+  .tooltip {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e293b; /* slate-900 */
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 10;
+  }
+
+  .tooltip:hover::after {
+    opacity: 1;
+  }
 }
