@@ -1,7 +1,5 @@
 [phases.setup]
-nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/refs/tags/nixos-24.05.tar.gz"
-
-nixPkgs = ["nodejs_22"]
+nixPkgs = ["nodejs_22", "pnpm"]
 
 [phases.install]
 cmds = ["pnpm install --frozen-lockfile"]
