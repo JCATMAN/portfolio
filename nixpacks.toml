@@ -1,7 +1,7 @@
 [phases.setup]
-runtime = "nodejs"
-runtimeVersion = "22.14.0"
 nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/refs/tags/nixos-24.05.tar.gz"
+
+nixPkgs = ["nodejs_22"]
 
 [phases.install]
 cmds = ["pnpm install --frozen-lockfile"]
@@ -9,6 +9,8 @@ cmds = ["pnpm install --frozen-lockfile"]
 [phases.build]
 cmds = ["pnpm run build"]
 
+[variables]
+NIXPACKS_SPA_OUT_DIR = "dist"
+
 [start]
 cmd = ""
-publishDir = "dist"
