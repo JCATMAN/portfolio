@@ -1,0 +1,122 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: "E-commerce Platform",
+    description: "A full-featured e-commerce platform with product management, cart functionality, and payment integration.",
+    image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    demoLink: "https://example.com",
+    codeLink: "https://github.com/example"
+  },
+  {
+    title: "Analytics Dashboard",
+    description: "Real-time data visualization dashboard for monitoring business metrics and performance analytics.",
+    image: "https://images.pexels.com/photos/7947541/pexels-photo-7947541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    tags: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
+    demoLink: "https://example.com",
+    codeLink: "https://github.com/example"
+  },
+  {
+    title: "Productivity App",
+    description: "Task management application with features for time tracking, priority setting, and collaborative workflows.",
+    image: "https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    tags: ["React Native", "Firebase", "Redux", "TypeScript"],
+    demoLink: "https://example.com",
+    codeLink: "https://github.com/example"
+  },
+  {
+    title: "AI Content Generator",
+    description: "Content generation tool that uses machine learning to create SEO-optimized articles and marketing copy.",
+    image: "https://images.pexels.com/photos/8438922/pexels-photo-8438922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    tags: ["Python", "TensorFlow", "React", "FastAPI"],
+    demoLink: "https://example.com",
+    codeLink: "https://github.com/example"
+  }
+];
+
+const categories = ["All", "React", "Vue.js", "Node.js", "TypeScript", "Python"];
+---
+
+<section id="projects" class="section bg-white dark:bg-slate-950 relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary-400/5 rounded-full blur-3xl"></div>
+  
+  <div class="container relative">
+    <SectionHeading 
+      title="Featured Projects" 
+      subtitle="A selection of my recent work showcasing my skills and expertise in building web applications and digital solutions."
+    />
+    
+    <!-- Project Filter -->
+    <div class="flex justify-center flex-wrap gap-2 mb-12" data-aos="fade-up">
+      {categories.map((category, index) => (
+        <button 
+          class={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${index === 0 ? 'bg-primary-500 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+          data-category={category}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+    
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {projects.map((project, index) => (
+        <div data-aos="fade-up" data-aos-delay={100 * index}>
+          <ProjectCard 
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+            demoLink={project.demoLink}
+            codeLink={project.codeLink}
+          />
+        </div>
+      ))}
+    </div>
+    
+    <!-- More Projects Button -->
+    <div class="flex justify-center mt-12" data-aos="fade-up">
+      <a href="#" class="btn-outline">
+        View All Projects
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Project filtering functionality
+  const filterButtons = document.querySelectorAll('[data-category]');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active button styles
+      filterButtons.forEach(btn => {
+        btn.classList.remove('bg-primary-500', 'text-white');
+        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      
+      button.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      button.classList.add('bg-primary-500', 'text-white');
+      
+      // Implement actual filtering here (would be based on data attributes in real implementation)
+      // For this example, we'll just log the category
+      console.log('Filtering by:', button.dataset.category);
+      
+      // Animation for items being filtered
+      const projectItems = document.querySelectorAll('.project-card');
+      projectItems.forEach(item => {
+        item.style.opacity = '0';
+        setTimeout(() => {
+          item.style.opacity = '1';
+        }, 300);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,164 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const skillCategories = [
+  {
+    name: "Frontend",
+    skills: [
+      { name: "JavaScript", level: 95 },
+      { name: "TypeScript", level: 90 },
+      { name: "React", level: 95 },
+      { name: "Vue.js", level: 85 },
+      { name: "HTML/CSS", level: 90 },
+      { name: "Tailwind CSS", level: 92 },
+    ],
+  },
+  {
+    name: "Backend",
+    skills: [
+      { name: "Node.js", level: 88 },
+      { name: "Express", level: 85 },
+      { name: "Python", level: 80 },
+      { name: "RESTful APIs", level: 92 },
+      { name: "GraphQL", level: 78 },
+      { name: "SQL", level: 85 },
+    ],
+  },
+  {
+    name: "DevOps & Tools",
+    skills: [
+      { name: "Git", level: 90 },
+      { name: "Docker", level: 82 },
+      { name: "AWS", level: 75 },
+      { name: "CI/CD", level: 80 },
+      { name: "Testing", level: 85 },
+      { name: "Agile/Scrum", level: 88 },
+    ],
+  },
+];
+---
+
+<section
+  id="skills"
+  class="section bg-slate-50 dark:bg-slate-900 relative overflow-hidden"
+>
+  <!-- Decorative elements -->
+  <div
+    class="absolute top-20 left-0 w-64 h-64 bg-primary-400/5 rounded-full blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-20 right-0 w-64 h-64 bg-secondary-400/5 rounded-full blur-3xl"
+  >
+  </div>
+
+  <div class="container relative">
+    <SectionHeading
+      title="Skills & Expertise"
+      subtitle="A comprehensive overview of my technical skills and proficiencies across various technologies and tools."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        skillCategories.map((category, categoryIndex) => (
+          <div
+            class="glass-card p-6"
+            data-aos="fade-up"
+            data-aos-delay={100 * categoryIndex}
+          >
+            <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white font-heading">
+              {category.name}
+            </h3>
+
+            <div class="space-y-5">
+              {category.skills.map((skill, skillIndex) => (
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-slate-700 dark:text-slate-300">
+                      {skill.name}
+                    </span>
+                    <span class="text-sm text-slate-600 dark:text-slate-400">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div
+                      class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
+                      style={`width: ${skill.level}%`}
+                      data-aos="skill-progress"
+                      data-aos-delay={150 * skillIndex + 200 * categoryIndex}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Additional skills section -->
+    <div class="mt-16" data-aos="fade-up" data-aos-delay="300">
+      <h3
+        class="text-xl font-bold mb-6 text-center text-slate-900 dark:text-white font-heading"
+      >
+        Other Skills
+      </h3>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        {
+          [
+            "React Native",
+            "Next.js",
+            "Astro",
+            "SCSS",
+            "Jest",
+            "Redux",
+            "Webpack",
+            "MongoDB",
+            "PostgreSQL",
+            "Firebase",
+            "Nuxt.js",
+            "n8n",
+            "UX/UI Design",
+            "Performance Optimization",
+            "SEO",
+            "Accessibility",
+            "Web Animation",
+            "Responsive Design",
+          ].map((skill) => (
+            <span class="px-4 py-2 bg-white dark:bg-slate-800 rounded-full text-slate-700 dark:text-slate-300 text-sm shadow-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/70 transition-colors duration-200">
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Custom AOS animation for skill bars
+  document.addEventListener("DOMContentLoaded", () => {
+    // Add a custom animation for skill bars
+    const skillBars = document.querySelectorAll('[data-aos="skill-progress"]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.width = entry.target?.parentElement?.style.width;
+            entry.target.style.transition = "width 1s ease-out";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    skillBars.forEach((bar) => {
+      bar.style.width = "0%";
+      observer.observe(bar);
+    });
+  });
+</script>

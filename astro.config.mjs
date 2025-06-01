@@ -1,15 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
-import tailwindcss from '@tailwindcss/vite';
-
-import image from '@astrojs/image';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  },
-
-  integrations: [image()]
+  integrations: [tailwind()],
+  site: 'https://josehernandezhoyos.dev',
+  compressHTML: true,
 });

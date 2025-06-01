@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  demoLink: string;
+  codeLink: string;
+}
+
+const { title, description, image, tags, demoLink, codeLink } = Astro.props;
+---
+
+<div class="glass-card h-full overflow-hidden group transition-all duration-300 project-card">
+  <!-- Project Image -->
+  <div class="relative overflow-hidden aspect-video">
+    <img 
+      src={image} 
+      alt={`${title} project screenshot`} 
+      class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+      loading="lazy"
+    />
+    
+    <!-- Overlay with links -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+      <div class="flex gap-4">
+        <a 
+          href={demoLink} 
+          class="px-4 py-2 bg-white text-slate-900 rounded-lg font-medium text-sm hover:bg-primary-50 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Live Demo
+        </a>
+        <a 
+          href={codeLink} 
+          class="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium text-sm hover:bg-slate-700 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Code
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Project Info -->
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">{title}</h3>
+    <p class="text-slate-600 dark:text-slate-400 mb-4">{description}</p>
+    
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-2 mt-auto">
+      {tags.map(tag => (
+        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium rounded-full">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>

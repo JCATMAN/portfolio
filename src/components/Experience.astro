@@ -1,0 +1,134 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const experiences = [
+  {
+    title: "Senior Software Engineer",
+    company: "Leantech",
+    duration: "Mar 2023 – Present",
+    description: "Working across various product areas, designing software architectures and developing Freight 3.0 related systems using TypeScript, NestJS, Express, React (Next.js), and Vue (Nuxt) on GCP infrastructure.",
+    highlights: [
+      "Architected scalable solutions for Freight-related systems using microservices.",
+      "Delivered pixel-perfect UI implementations from Figma designs in collaboration with UX/UI teams.",
+      "Led architectural planning and technical decisions for modern TypeScript applications."
+    ]
+  },
+  {
+    title: "Software Engineer",
+    company: "8BASE",
+    duration: "Sep 2021 – Mar 2023",
+    description: "Developed developer-focused tools using the Node.js stack, Serverless functions, React, and Next.js. Worked within an agile SCRUM environment with heavy use of AWS technologies.",
+    highlights: [
+      "Built and deployed scalable serverless applications using AWS Lambda and Redis.",
+      "Improved CI/CD workflows, reducing deployment times significantly.",
+      "Collaborated in team-driven feature planning and agile iterations."
+    ]
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Red Valley (RVDEV)",
+    duration: "Apr 2020 – Sep 2021",
+    description: "Developed scalable payroll and business management systems using React, Next.js, React Native, and NestJS. Ensured full test coverage with unit and E2E tests.",
+    highlights: [
+      "Implemented complex data structures for payroll automation.",
+      "Built backend services using Python (Flask, Django REST) deployed via AWS Lambda.",
+      "Maintained high code quality through automated testing strategies."
+    ]
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Pefpi S.A.S.",
+    duration: "Oct 2018 – Apr 2020",
+    description: "Worked as a full stack developer using the PERN stack (PostgreSQL, Express, React with Next.js, Node.js) for construction-related web apps. Developed billing logic with Django REST.",
+    highlights: [
+      "Designed backend billing systems integrating Django REST with PostgreSQL.",
+      "Optimized REST APIs and SQL queries for business operations.",
+      "Delivered modular, reusable front-end components with React and Next.js."
+    ]
+  },
+  {
+    title: "Frontend Developer",
+    company: "Inter-Telco",
+    duration: "Jun 2018 – Oct 2018",
+    description: "Built pixel-perfect frontends for government and security-related web platforms using Angular, following agile methodologies and UI component standards.",
+    highlights: [
+      "Developed reusable Angular components with a focus on clean code and performance.",
+      "Collaborated with designers to achieve pixel-perfect implementations.",
+      "Ensured accessibility and usability across government-facing tools."
+    ]
+  },
+  {
+    title: "Freelance Full Stack Developer",
+    company: "Self-employed",
+    duration: "2017 – 2018",
+    description: "Created responsive websites, mobile applications, and landing pages using React, Next.js, React Native, NestJS, and backend technologies like Flask and Django.",
+    highlights: [
+      "Delivered full-stack solutions for multiple clients across web and mobile.",
+      "Built performant APIs and responsive UIs with modern JavaScript frameworks.",
+      "Used Django and Flask for backend logic in specialized use cases."
+    ]
+  }
+];
+
+---
+
+<section id="experience" class="section bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-20 right-0 w-64 h-64 bg-primary-400/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 left-0 w-64 h-64 bg-secondary-400/5 rounded-full blur-3xl"></div>
+
+  <div class="container relative">
+    <SectionHeading 
+      title="Professional Experience" 
+      subtitle="My professional journey through various roles and companies, showcasing my growth and expertise in software development."
+    />
+    
+    <div class="relative">
+      <!-- Timeline Line -->
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+      
+      <!-- Experience Items -->
+      <div class="space-y-12">
+        {experiences.map((experience, index) => (
+          <div class="relative" data-aos={index % 2 === 0 ? "fade-right" : "fade-left"} data-aos-delay={100 * index}>
+            <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- For odd indexed items, empty div on left for alignment -->
+              {index % 2 === 1 && <div class="hidden md:block"></div>}
+              
+              <!-- Experience Card -->
+              <div class="glass-card p-6 md:p-8 hover:shadow-xl transition-all duration-300">
+                <div class="mb-4 flex justify-between items-center">
+                  <h3 class="text-xl font-bold text-slate-900 dark:text-white">{experience.title}</h3>
+                  <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium rounded-full">
+                    {experience.duration}
+                  </span>
+                </div>
+                
+                <p class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-4">{experience.company}</p>
+                <p class="text-slate-700 dark:text-slate-300 mb-6">{experience.description}</p>
+                
+                <h4 class="font-medium text-slate-900 dark:text-white mb-3">Key Achievements:</h4>
+                <ul class="space-y-2">
+                  {experience.highlights.map(highlight => (
+                    <li class="flex items-start">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-slate-600 dark:text-slate-400">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <!-- For even indexed items, empty div on right for alignment -->
+              {index % 2 === 0 && <div class="hidden md:block"></div>}
+            </div>
+            
+            <!-- Timeline Dot -->
+            <div class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-primary-500 rounded-full border-4 border-white dark:border-slate-900"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
