@@ -8,8 +8,63 @@ My personal portfolio website built with modern web technologies, showcasing my 
 - Dark/Light mode theme switching
 - Smooth scroll animations using AOS
 - Interactive components with GSAP animations
-- Contact form integration
+- Self-hosted automation workflows with n8n
 - Projects section (🚧 In Progress)
+
+## 🤖 Automated Features
+
+### Contact Form Integration
+
+![Contact Form](./public/images/docs/Contact%20Form.png)
+
+I've implemented a fully automated contact system using a self-hosted n8n instance. Here's how it works:
+
+1. **User Interaction**:
+   - User fills out the contact form with their details
+   - Client-side validation ensures all required fields are filled
+   - Loading state provides visual feedback during submission
+
+2. **Form Submission**:
+   ```typescript
+   const response = await fetch(contactWebhook, {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify(data)
+   });
+   ```
+
+3. **n8n Workflow**:
+   - Webhook receives the form data
+   - Data is validated and sanitized
+   - Contact information is stored in a database
+   - Notification email is sent to me
+   - Confirmation email is sent to the user
+   - Success response is returned to the form
+
+4. **User Feedback**:
+   - Success message shown on successful submission
+   - Error handling with user-friendly messages
+   - Form resets for new submissions
+
+### CV Download System
+
+![CV Download](./public/images/docs/Download_CV.png)
+
+The CV download system is another automated workflow I've built with n8n:
+
+1. **Download Request**:
+   - User clicks the download CV button
+   - Request is sent to n8n webhook
+   - Loading state indicates processing
+
+2. **n8n Processing**:
+   - Webhook triggers the workflow
+   - Latest CV version is retrieved from secure storage
+   - Download analytics are recorded
+   - Direct download link is generated
+
+
+Both features demonstrate my approach to building secure, scalable, and user-friendly automation systems. The entire workflow is self-hosted, ensuring data privacy and complete control over the infrastructure.
 
 ## 💻 Technologies Used
 
@@ -18,19 +73,22 @@ My personal portfolio website built with modern web technologies, showcasing my 
 - [TypeScript](https://www.typescriptlang.org/) - Type Safety
 - [AOS](https://michalsnik.github.io/aos/) - Scroll Animations
 - [GSAP](https://greensock.com/gsap/) - Advanced Animations
+- [n8n](https://n8n.io/) - Workflow Automation
 - [Inter](https://fonts.google.com/specimen/Inter) & [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) - Typography
 
 ## 🛠️ Project Structure
 
 ```text
 /
-├── public/          # Static assets
+├── public/
+│   ├── images/        # Static images and documentation
+│   └── favicon.svg
 ├── src/
-│   ├── assets/      # Project images and media
-│   ├── components/  # Reusable UI components
-│   ├── layouts/     # Page layouts
-│   ├── pages/       # Route pages
-│   └── styles/      # Global styles
+│   ├── assets/        # Component-specific assets
+│   ├── components/    # Reusable UI components
+│   ├── layouts/       # Page layouts
+│   ├── pages/         # Route pages
+│   └── styles/        # Global styles
 └── package.json
 ```
 
@@ -56,7 +114,7 @@ The portfolio is actively being developed with most core features implemented. T
 
 ## 📝 License
 
-All rights reserved - Jose Hernandez Hoyos (Because it's me)
+All rights reserved - Jose Hernandez Hoyos
 
 ## 🧞 Commands
 
