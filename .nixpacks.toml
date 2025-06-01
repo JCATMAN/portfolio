@@ -2,3 +2,13 @@
 runtime = "nodejs"
 runtimeVersion = "22.14.0"
 nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/refs/tags/nixos-24.05.tar.gz"
+
+[phases.install]
+cmds = ["pnpm install --frozen-lockfile"]
+
+[phases.build]
+cmds = ["pnpm run build"]
+
+[start]
+cmd = ""
+publishDir = "dist"
